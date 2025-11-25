@@ -3,6 +3,7 @@ import pandas as pd
 from dataset import load_data, write_data, CATEGORY_LIST
 from augmentation_total import augment_dataframe, save_augmented_data
 import matplotlib.pyplot as plt
+import os  # 추가
 
 # 페이지 설정
 st.set_page_config(
@@ -104,14 +105,16 @@ if enable_augmentation:
     # 저장 버튼
     if st.session_state.augmented_data is not None:
         if st.sidebar.button("Save Augmented Data"):
-            # 데이터 소스에 따라 저장 경로 결정
+            # 프로젝트 폴더 기준으로 저장 경로 결정
+            base_dir = os.path.dirname(os.path.abspath(__file__))
             if data_source == "data1 only (clean)":
-                output_folder = r"D:\JJS\Univ_classses\3_2\기계학습\team_project\ml-master\augmentation_data1"
+                output_folder = os.path.join(base_dir, "augmentation_data1")
             elif data_source == "data2 only (noisy)":
-                output_folder = r"D:\JJS\Univ_classses\3_2\기계학습\team_project\ml-master\augmentation_data2"
+                output_folder = os.path.join(base_dir, "augmentation_data2")
             else:  # Original (data1 + data2)
-                output_folder = r"D:\JJS\Univ_classses\3_2\기계학습\team_project\ml-master\augmentation_data_combined"
+                output_folder = os.path.join(base_dir, "augmentation_data_combined")
 
+            os.makedirs(output_folder, exist_ok=True)  # 폴더 없으면 생성
             save_augmented_data(st.session_state.augmented_data, output_folder)
             st.sidebar.success(f"Saved to: {output_folder}")
 
