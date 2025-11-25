@@ -66,6 +66,8 @@ def write_data(df, category: str, data_id: int) -> plt.figure:
         - df: Data Frame
         - category: ["circle", "diagonal_left", "diagonal_right", "horizontal", "vertical"]
         - data_id: 1 ~
+
+    TODO: 3차원 그래프의 좌표를 통일
     """
     series = df[(df["category"] == category) & (df["data_id"] == data_id)]
     fig = plt.figure()
