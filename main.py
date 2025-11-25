@@ -184,7 +184,7 @@ with tab2:
 
                 with col2:
                     st.subheader("Original Data")
-                    original_id = int(str(data_id)[0])  # 1001 -> 1
+                    original_id = int(str(data_id)[:-3])  # 1001 -> 1
                     fig_orig = write_data(original_data, category, original_id)
                     st.pyplot(fig_orig)
                     plt.close()
