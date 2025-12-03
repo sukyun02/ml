@@ -64,7 +64,7 @@ def rotate_3d(data: np.ndarray, angle_deg: float, axis: str = "z") -> np.ndarray
 
 
 #  Scale Data
-def scale_data(data: np.ndarray, scale_factor: float = 1.2) -> np.ndarray:
+def scale_data(data: np.ndarray, scale_factor: float = 1.1) -> np.ndarray:
 
     center = np.mean(data, axis=0)
 
